@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head></head>
+<body>
+<p class = "highlight">Times displayed below should update to your local time zone. <b>Your local time zone is <span id = "timezone"></span></b>.</p>
+
+<table>
+    <tbody>
+        <tr>
+            <th>Time</th>
+            <th>Day 1</th>
+        </tr>
+        <tr>
+            <td id = "slot-0"></td>
+            <td>A description</td>
+        </tr>
+        <tr>
+            <td id = "slot-1"></td>
+            <td>A description</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    Date.prototype.addHours= function(h){
+        var newDate = new Date(this.getTime());
+        newDate.setHours(newDate.getHours()+h);
+    return newDate;
+    }
+
+    Date.prototype.addMinutes= function(m){
+        var newDate = new Date(this.getTime());
+        newDate.setMinutes(newDate.getMinutes()+m);
+    return newDate;
+    }
+
+    var tz = new Date('May 12, 2025 3:30 PM UTC')
+    document.getElementById("timezone").innerHTML = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    var date1 = new Date('May 12, 2025 6:30 AM UTC');
+    var date1string = date1.toLocaleDateString();
+    var day1start = date1.addHours(9);
+    
+    for (let i = 0; i <= 1; i++) {
+        time = day1start.addMinutes(15 * i);
+        document.getElementById("slot-"+ i).innerHTML = time.toLocaleString([], {hour: '2-digit', minute: '2-digit', timeZoneName: 'short', hour12: false});
+    }
+</script>
+</body>
+</html>
