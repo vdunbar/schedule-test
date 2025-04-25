@@ -1,21 +1,125 @@
 <!DOCTYPE html>
-<head></head>
+<head>
+    <style>
+        td {vertical-align: top; border: 1px solid black;}
+    </style>
+</head>
 <body>
-<p class = "highlight">Times displayed below should update to your local time zone. <b>Your local time zone is <span id = "timezone"></span></b>.</p>
+<p class = "highlight">Times displayed below should update to your local time zone.</p>
+<p>Your local time zone is <span id = "timezone"></span>.</p>
+<p>And your current date and time is: <span id = "current-time"></span>.</p>
 
 <table>
     <tbody>
         <tr>
             <th>Time</th>
             <th>Day 1</th>
+            <th>Day 2</th>
+            <th>Day 3</th>
+            <th>Day 4</th>
+            <th>Day 5</th>
         </tr>
         <tr>
             <td id = "slot-0"></td>
-            <td>A description</td>
+            <td>Introductions</td>
+            <td>Recap</td>
+            <td>Recap</td>
+            <td>Recap</td>
+            <td>Recap</td>
         </tr>
         <tr>
             <td id = "slot-1"></td>
-            <td>A description</td>
+            <td rowspan="2">What is RDM</td>
+            <td rowspan="3">RDM: Bias and Reproducibility</td>
+            <td rowspan="2">Dependencies</td>
+            <td rowspan="3">R: Data Visualizations</td>
+            <td rowspan="2">Data Deposits</td>
+        </tr>
+        <tr>
+            <td id = "slot-2"></td>
+        </tr>
+        <tr>
+            <td id = "slot-3"></td>
+            <td>Why is RDM Important</td>
+            <td rowspan="5">R: Data Structures</td>
+            <td>Borealis</td>
+        </tr>
+        <tr>
+            <td id = "slot-4"></td>
+            <td>Break</td>
+            <td>Break</td>
+            <td>Break</td>
+            <td>Break</td>
+        </tr>
+        <tr>
+            <td id = "slot-5"></td>
+            <td rowspan="2">Data Science Workflow</td>
+            <td rowspan="3">Excel and R</td>
+            <td rowspan="3">R: Data Visualization</td>
+            <td rowspan="2">Borealis Deposit</td>
+        </tr>
+        <tr>
+            <td id = "slot-6"></td>
+        </tr>
+        <tr>
+            <td id = "slot-7"></td>
+            <td rowspan="2">OSF</td>
+            <td rowspan="3">Reflection & Survey</td>
+        </tr>
+        <tr>
+            <td id = "slot-8"></td>
+            <td rowspan="4">Lunch</td>
+            <td rowspan="4">Lunch</td>
+            <td rowspan="4">Lunch</td>
+        </tr>
+        <tr>
+            <td id = "slot-9"></td>
+            <td rowspan="4">Lunch</td>
+        </tr>
+        <tr>
+            <td id = "slot-10"></td>
+            <td rowspan="11" class="empty-block"></td>
+        </tr>
+        <tr>
+            <td id = "slot-11"></td>
+        </tr>
+        <tr>
+            <td id = "slot-12"></td>
+            <td rowspan="4">R: Introduction</td>
+            <td rowspan="4">R: Troubleshooting</td>
+            <td rowspan="4">R: Filtering & Selecting</td>
+        </tr>
+        <tr>
+            <td id = "slot-13"></td>
+            <td rowspan="4">DMP Part 1</td>
+        </tr>
+        <tr>
+            <td id = "slot-14"></td>
+        </tr>
+        <tr>
+            <td id = "slot-15"></td>
+        </tr>
+        <tr>
+            <td id = "slot-16"></td>
+            <td>Break</td>
+            <td>Break</td>
+            <td>Break</td>
+        </tr>
+        <tr>
+            <td id = "slot-17"></td>
+            <td rowspan="4">DMP Part 2</td>
+            <td rowspan="4">R: First Steps</td>
+            <td rowspan="4">R: Filtering and Selecting</td>
+            <td rowspan="4">R: Saving Outputs</td>
+        </tr>
+        <tr>
+            <td id = "slot-18"></td>
+        </tr>
+        <tr>
+            <td id = "slot-19"></td>
+        </tr>
+        <tr>
+            <td id = "slot-20"></td>
         </tr>
     </tbody>
 </table>
@@ -36,11 +140,14 @@
     var tz = new Date('May 12, 2025 6:30 AM UTC')
     document.getElementById("timezone").innerHTML = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
+    var ct = new Date()
+    document.getElementById("current-time").innerHTML = ct.toLocaleDateString([], {hour: '2-digit', minute: '2-digit', hour12: false});
+
     var date1 = new Date('May 12, 2025 6:30 AM UTC');
     var date1string = date1.toLocaleDateString();
     var day1start = date1.addHours(9);
     
-    for (let i = 0; i <= 1; i++) {
+    for (let i = 0; i <= 20; i++) {
         time = day1start.addMinutes(15 * i);
         document.getElementById("slot-"+ i).innerHTML = time.toLocaleString([], {hour: '2-digit', minute: '2-digit', timeZoneName: 'short', hour12: false});
     }
